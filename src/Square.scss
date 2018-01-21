@@ -1,0 +1,19 @@
+$grey-1: #eeeeee;
+$grey-2: #bbbbbb;
+$grey-3: #777777;
+
+.square {
+  width: 20px;
+  height: 20px;
+  border: 3px solid $grey-1;
+  border-bottom: 3px solid $grey-3;
+  border-right: 3px solid $grey-3;
+  background-color: $grey-2;
+  cursor: pointer;
+
+  &.revealed {
+    width: 24px;
+    height: 24px;
+    border: 1px solid $grey-3;
+  }
+}

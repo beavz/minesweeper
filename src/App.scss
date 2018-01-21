@@ -1,0 +1,38 @@
+$grey-1: #eeeeee;
+$grey-2: #bbbbbb;
+$grey-3: #777777;
+
+.App {
+  padding: 10px;
+  background-color: $grey-2;
+  border: 3px solid $grey-1;
+  border-bottom: 3px solid $grey-3;
+  border-right: 3px solid $grey-3;
+  width: auto;
+  margin: 10px;
+  display: inline-block;
+
+  header {
+    height: 46px;
+    margin-bottom: 10px;
+    background-color: $grey-2;
+    border: 3px solid $grey-1;
+    border-top: 3px solid $grey-3;
+    border-left: 3px solid $grey-3;
+  }
+
+
+  img {
+    width: 10px;
+    height: 10px;
+  }
+
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    border: 3px solid $grey-1;
+    border-top: 3px solid $grey-3;
+    border-left: 3px solid $grey-3;
+  }
+}
+
