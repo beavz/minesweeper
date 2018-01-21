@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
-import './Mine.css';
+import mine from './mine.svg';
 
 class Mine extends Component {
   render() {
     const handleClick = () => {
-      this.props.endGame(this.props.i);
+      if (this.props.gameEnder === null) {
+        this.props.endGame(this.props.i);
+      }
     }
 
+    const renderImage = () => {
+      if (this.props.gameEnder !== null) {
+        return <img src={mine} alt="mine"/>;
+      } else {
+        return '';
+      }
+    }
+
+    let className = 'square';
+    if (this.props.gameEnder === this.props.i) {
+      className += ' exploded'
+    } else if (this.props.gameEnder !== null) {
+      className += ' revealed'
+    }
+
+
     return (
-      <div className={`square`} onClick={handleClick}>
-      { this.props.i }
-      B
+      <div className={className} onClick={handleClick}>
+        {renderImage()}
       </div>
     );
   }

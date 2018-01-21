@@ -5,8 +5,15 @@
   border-bottom: 3px solid #777777;
   border-right: 3px solid #777777;
   background-color: #bbbbbb;
-  cursor: pointer; }
-  .square.revealed {
+  cursor: pointer;
+  line-height: 24px; }
+  .square.revealed, .square.exploded {
     width: 24px;
     height: 24px;
     border: 1px solid #777777; }
+  .square.exploded {
+    background-color: red; }
+  .square img {
+    margin: 4.5px;
+    width: 15px;
+    height: 15px; }

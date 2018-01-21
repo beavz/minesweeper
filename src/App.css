@@ -14,9 +14,6 @@
     border: 3px solid #eeeeee;
     border-top: 3px solid #777777;
     border-left: 3px solid #777777; }
-  .App img {
-    width: 10px;
-    height: 10px; }
   .App .board {
     display: flex;
     flex-wrap: wrap;

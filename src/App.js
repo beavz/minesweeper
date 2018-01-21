@@ -46,14 +46,15 @@ class App extends Component {
 
     const renderSquare = (ud, i) => {
       if (isBomb(i, this.state)) {
-        return <Mine i={i} key={i} endGame={endGame}/>
+        return <Mine i={i} key={i} endGame={endGame} gameEnder={this.state.gameEnder}/>
       } else {
         return (
           <Square
           i={i} key={i}
           count={bombCount(i, this.state)}
           revealed={revealed(i, this.state)}
-          reveal={reveal} />
+          reveal={reveal}
+          gameOver={this.state.gameEnder !== null} />
         );
       }
     };
@@ -67,7 +68,6 @@ class App extends Component {
     return (
       <div className="App">
       <header>
-        <img src={faces} alt="minesweeper-faces" />
       </header>
       <div className="board" style={style}>
       {size.map(renderSquare)}
