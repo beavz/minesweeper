@@ -12,3 +12,6 @@ to run locally:
 
 to build:
 - `yarn build-css && yarn build` (built js code is gitignored)
+
+**CREDIT**
+mine icon: "Mine by Vicons Design from the Noun Project"
