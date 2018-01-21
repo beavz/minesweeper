@@ -3,12 +3,6 @@ import mine from './mine.svg';
 
 class Mine extends Component {
   render() {
-    const handleClick = () => {
-      if (this.props.gameEnder === null) {
-        this.props.endGame(this.props.i);
-      }
-    }
-
     const renderImage = () => {
       if (this.props.gameEnder !== null) {
         return <img src={mine} alt="mine"/>;
@@ -24,9 +18,10 @@ class Mine extends Component {
       className += ' revealed'
     }
 
-
     return (
-      <div className={className} onClick={handleClick}>
+      <div
+        className={className}
+        onClick={this.props.onClick}>
         {renderImage()}
       </div>
     );

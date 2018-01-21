@@ -28,8 +28,8 @@ const uniqueFilter = (val, i, arr) => {
 }
 
 const emptyNeighbors = (i, state) => {
-  return neighbors(i, state.width, state.height).
-    filter((n) => { return !isBomb(n, state) })
+  return neighbors(i, state.width, state.height)
+    .filter((n) => { return !isBomb(n, state) })
 }
 
 const revealed = (i, state) => {
@@ -41,9 +41,9 @@ const isBomb = (i, state) => {
 }
 
 const bombCount = (i, state) => {
-  return neighbors(i, state.width, state.height).
-    filter((n) => { return state.bombs.indexOf(n) !== -1; }).
-    length
+  return neighbors(i, state.width, state.height)
+    .filter((n) => { return state.bombs.indexOf(n) !== -1; })
+    .length
 }
 
 const newState = (width, height, bombs) => {

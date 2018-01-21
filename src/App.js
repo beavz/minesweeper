@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Square from './Square';
 import Mine from './Mine';
-import faces from './faces.svg';
 import { uniqueFilter, newState, bombCount, emptyNeighbors, revealed, isBomb } from './minesweeper.js';
 import './App.css';
 
@@ -14,15 +13,23 @@ class App extends Component {
   render() {
     const size = new Array(this.state.width*this.state.height).fill(undefined);
 
-    const endGame = (i) => {
-      this.setState({ gameEnder: i });
+    const endGame = i => {
+      return (() => {
+        if (this.state.gameEnder === null) {
+          this.setState({ gameEnder: i });
+        }
+      });
     }
 
     const reveal = i => {
-      this.setState(
-        { revealed: this.state.revealed.concat(squaresToReveal([i], this.state.revealed)) }
-      );
-    };
+      return (() => {
+        if (this.state.gameEnder === null) {
+          this.setState(
+            { revealed: this.state.revealed.concat(squaresToReveal([i], this.state.revealed)) }
+          );
+        }
+      });
+    }
 
     const squaresToReveal = (is, revealed) => {
       if (is.length === 0) { return is; }
@@ -46,15 +53,22 @@ class App extends Component {
 
     const renderSquare = (ud, i) => {
       if (isBomb(i, this.state)) {
-        return <Mine i={i} key={i} endGame={endGame} gameEnder={this.state.gameEnder}/>
+        return (
+          <Mine
+            i={i}
+            key={i}
+            onClick={endGame(i)}
+            gameEnder={this.state.gameEnder}/>
+        );
       } else {
         return (
           <Square
-          i={i} key={i}
-          count={bombCount(i, this.state)}
-          revealed={revealed(i, this.state)}
-          reveal={reveal}
-          gameOver={this.state.gameEnder !== null} />
+            i={i}
+            key={i}
+            count={bombCount(i, this.state)}
+            revealed={revealed(i, this.state)}
+            onClick={reveal(i)}
+            gameOver={this.state.gameEnder !== null} />
         );
       }
     };
@@ -63,7 +77,6 @@ class App extends Component {
       maxWidth: `${this.state.width * 26}px`,
       minWidth: `${this.state.width * 26}px`
     }
-
 
     return (
       <div className="App">

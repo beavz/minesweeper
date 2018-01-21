@@ -4,13 +4,6 @@ import './Square.css';
 class Square extends Component {
 
   render() {
-    const reveal = this.props.reveal;
-    const handleClick =  () => {
-      if (!this.props.gameOver) {
-        reveal(this.props.i);
-      }
-    }
-
     const displayCount = (this.props.revealed && this.props.count > 0) ?
       this.props.count : '';
 
@@ -22,7 +15,7 @@ class Square extends Component {
       'navy',
       'purple',
       'cyan'
-    ]
+    ];
 
     const style = this.props.revealed ?
       { color: colors[this.props.count] } :
@@ -32,7 +25,7 @@ class Square extends Component {
     if (this.props.revealed) { className += ' revealed' }
 
     return (
-      <div style={style} className={className} onClick={handleClick}>
+      <div style={style} className={className} onClick={this.props.onClick}>
         { displayCount }
       </div>
     );
