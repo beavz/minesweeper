@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Square from './Square';
 import Mine from './Mine';
-import { uniqueFilter, newState, bombCount, emptyNeighbors, revealed, isBomb } from './minesweeper.js';
+import { flagged, uniqueFilter, newState, bombCount, emptyNeighbors, revealed, isBomb } from './stateHelpers.js';
 import './App.css';
 
 class App extends Component {
@@ -15,15 +15,29 @@ class App extends Component {
 
     const endGame = i => {
       return (() => {
-        if (this.state.gameEnder === null) {
+        if (this.state.gameEnder === null && !flagged(i, this.state)) {
           this.setState({ gameEnder: i });
+        }
+      });
+    }
+
+    const flag = i => {
+      return ((e) => {
+        e.preventDefault();
+
+        if (this.state.gameEnder === null) {
+          if (flagged(i, this.state)) {
+            this.setState({ flagged: this.state.flagged.filter(e => (e !== i)) });
+          } else {
+            this.setState({ flagged: this.state.flagged.concat([i]) });
+          }
         }
       });
     }
 
     const reveal = i => {
       return (() => {
-        if (this.state.gameEnder === null) {
+        if (this.state.gameEnder === null && !flagged(i, this.state)) {
           this.setState(
             { revealed: this.state.revealed.concat(squaresToReveal([i], this.state.revealed)) }
           );
@@ -57,7 +71,9 @@ class App extends Component {
           <Mine
             i={i}
             key={i}
+            flagged={flagged(i, this.state)}
             onClick={endGame(i)}
+            onContextMenu={flag(i)}
             gameEnder={this.state.gameEnder}/>
         );
       } else {
@@ -67,7 +83,9 @@ class App extends Component {
             key={i}
             count={bombCount(i, this.state)}
             revealed={revealed(i, this.state)}
+            flagged={flagged(i, this.state)}
             onClick={reveal(i)}
+            onContextMenu={flag(i)}
             gameOver={this.state.gameEnder !== null} />
         );
       }

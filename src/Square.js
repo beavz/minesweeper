@@ -25,8 +25,11 @@ class Square extends Component {
     if (this.props.revealed) { className += ' revealed' }
 
     return (
-      <div style={style} className={className} onClick={this.props.onClick}>
-        { displayCount }
+      <div
+        style={style} className={className}
+        onClick={this.props.onClick}
+        onContextMenu={this.props.onContextMenu}>
+        { this.props.flagged ? 'F' : displayCount }
       </div>
     );
   }

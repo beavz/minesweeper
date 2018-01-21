@@ -21,8 +21,9 @@ class Mine extends Component {
     return (
       <div
         className={className}
-        onClick={this.props.onClick}>
-        {renderImage()}
+        onClick={this.props.onClick}
+        onContextMenu={this.props.onContextMenu}>
+        { this.props.flagged ? 'F' : renderImage()}
       </div>
     );
   }

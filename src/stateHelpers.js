@@ -27,6 +27,10 @@ const uniqueFilter = (val, i, arr) => {
   return arr.indexOf(val) === i;
 }
 
+const flagged = (i, state) => {
+ return state.flagged.indexOf(i) !== -1;
+}
+
 const emptyNeighbors = (i, state) => {
   return neighbors(i, state.width, state.height)
     .filter((n) => { return !isBomb(n, state) })
@@ -48,7 +52,7 @@ const bombCount = (i, state) => {
 
 const newState = (width, height, bombs) => {
   const size = width * height;
-  let state = { width: width, height: height, gameEnder: null, revealed: [], bombs: [] };
+  let state = { width: width, height: height, gameEnder: null, revealed: [], bombs: [], flagged: [] };
 
   while (0 < bombs) {
     let i =  Math.floor(Math.random() * size);
@@ -62,4 +66,4 @@ const newState = (width, height, bombs) => {
   return state;
 };
 
-export { uniqueFilter, newState, bombCount, emptyNeighbors, revealed, isBomb };
+export { flagged, uniqueFilter, newState, bombCount, emptyNeighbors, revealed, isBomb };
